@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cisco.task.dao.UserDao">
+
+  <resultMap id="BaseResultMap" type="UserEntity">
+    <id column="userid" jdbcType="INTEGER" property="userId" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="role" jdbcType="INTEGER" property="role" />
+  </resultMap>
+
+
+  <select id="selectUserList" resultMap="BaseResultMap">
+    SELECT userid As userId,username,name, password,role,email  FROM task_management.user WHERE flag = 0;
+  </select>
+  
+  <select id="selectOperaterUserList" resultMap="BaseResultMap">
+    SELECT userid As userId,username,name, password,role,email  FROM task_management.user WHERE flag = 0 and role='操作员';
+  </select>
+  
+  <select id="selectUser" parameterType="Integer" resultMap="BaseResultMap">
+  SELECT userid AS userId ,username, name, password,role,email  FROM task_management.user WHERE userid = #{userId} AND flag = 0;
+  </select>
+  
+  <insert id="insertUser" parameterType="UserEntity">
+  INSERT INTO user (username,password,role,email,name,flag) VALUES (#{username},#{password},#{role},#{email},#{name},0)
+  </insert>
+  
+  
+  
+  <update id="updateUser" parameterType="UserEntity">
+  update user set username = #{username} ,password= #{password},role= #{role},email= #{email},name= #{name} where userid = #{userId}
+  </update>
+  
+  <update id="deleteUser"  parameterType="Integer">
+  update user set flag= 1 where userid = #{userId}
+  </update>
+  
+
+
+</mapper>

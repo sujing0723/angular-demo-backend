@@ -1,0 +1,32 @@
+package com.cisco.task.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.cisco.task.dto.ResultDto;
+import com.cisco.task.dto.UserDto;
+import com.cisco.task.entity.UserEntity;
+import com.cisco.task.service.LoginService;
+
+@RestController
+public class LoginController {
+	@Autowired
+	private LoginService loginService;
+	
+	
+	@PostMapping("/login")
+	public ResultDto login(@RequestBody UserEntity user) {
+		UserEntity userEntity = new UserEntity();
+		userEntity = loginService.login(user);
+		ResultDto result = new ResultDto();
+		if(userEntity == null) {
+			result.setSuccess(false);
+		}else {
+			result.setData(user);
+		}
+		return result;
+		
+	}
+}

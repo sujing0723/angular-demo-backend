@@ -1,0 +1,27 @@
+package com.cisco.task.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.cisco.task.dao.TaskDao;
+import com.cisco.task.entity.TaskEntity;
+
+@Service
+public class TaskService {
+
+	@Autowired
+	private TaskDao taskDao;
+	
+	public List<TaskEntity> getTasks() {
+		// TODO Auto-generated method stub
+		return taskDao.selectTasks();
+	}
+
+	public int createTask() {
+		return taskDao.addTask();
+		
+	}
+
+}

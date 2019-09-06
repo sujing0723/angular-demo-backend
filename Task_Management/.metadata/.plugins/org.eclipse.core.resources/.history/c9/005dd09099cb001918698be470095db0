@@ -1,0 +1,11 @@
+package com.cisco.task.service;
+
+import java.util.List;
+
+import com.cisco.task.entity.TaskEntity;
+
+public interface TaskService {
+
+	List<TaskEntity> getTasks();
+
+}

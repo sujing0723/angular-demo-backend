@@ -1,0 +1,14 @@
+package com.cisco.task.dao;
+
+import java.util.List;
+
+import com.cisco.task.entity.TaskEntity;
+
+public class TaskDao {
+
+	public List<TaskEntity> selectTasks() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

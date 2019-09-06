@@ -1,0 +1,5 @@
+package com.cisco.task.dto;
+
+public class TaskDto {
+
+}

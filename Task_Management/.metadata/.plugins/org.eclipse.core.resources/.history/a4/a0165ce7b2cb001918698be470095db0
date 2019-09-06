@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cisco.task.dao.TaskDao">
+
+  <resultMap id="BaseResultMap" type="TaskEntity">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="taskName" jdbcType="VARCHAR" property="taskName" />
+    <result column="taskState" jdbcType="VARCHAR" property="taskState" />
+    <result column="taskStaff" jdbcType="VARCHAR" property="taskStaff" />
+    <result column="taskDescription" jdbcType="VARCHAR" property="taskDescription" />
+    <result column="operation" jdbcType="VARCHAR" property="operation" />
+    <result column="question" jdbcType="VARCHAR" property="question" />
+    <result column="time" jdbcType="VARCHAR" property="time" />
+    <result column="checked" jdbcType="INTEGER" property="checked" />
+
+  </resultMap>
+
+
+  <select id="selectTasks"  resultMap="BaseResultMap">
+   SELECT id, taskName, taskState, taskStaff, taskDescription, operation, question,time, checked FROM task_management.tasks;
+  </select>
+  
+  <insert id="addTask" parameterType="TaskEntity">
+  insert into task_management.tasks(taskName, taskState, taskStaff, taskDescription, operation, question,time, checked) values(#{taskName},#{taskState},#{taskStaff},#{taskDescription},#{operation},#{question},#{time},#{checked})
+  </insert>
+  
+  
+  
+  <update id="editTask" parameterType="TaskEntity">
+  update task_management.tasks set  taskStaff=#{taskStaff}, taskDescription=#{taskDescription}
+  </update>
+  
+  
+  
+  
+
+
+</mapper>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cisco.task.dao.UserDao">
+
+  <resultMap id="BaseResultMap" type="UserEntity">
+    <id column="id" jdbcType="INTEGER" property="userId" />
+    <result column="username" jdbcType="VARCHAR" property="userName" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="role" jdbcType="INTEGER" property="role" />
+  </resultMap>
+
+
+  <select id="selectUserList" resultMap="BaseResultMap">
+    SELECT userid AS userId,username AS userName, password,role,email  FROM task_management.user;
+  </select>
+  
+  <select id="selectTask" parameterType="Integer" resultMap="BaseResultMap">
+   SELECT id, taskName, taskState, taskStaff, taskDescription, operation, question,time, checked FROM task_management.tasks where id=#{id};
+  </select>
+  
+  <insert id="insertUser" parameterType="UserEntity">
+  </insert>
+  
+  
+  
+  <update id="updateUser" parameterType="UserEntity">
+  </update>
+  
+
+
+</mapper>
